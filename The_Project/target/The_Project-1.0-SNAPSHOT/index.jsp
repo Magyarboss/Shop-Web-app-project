@@ -243,7 +243,7 @@
         <br/>
         
        
-<!-- ============= FOOTER// ============== --> 
+<!-- ============= FOOTER ============== --> 
         
         <div class="container mt-auto">
             <footer class="py-3 my-4">
@@ -264,7 +264,7 @@
                 </ul>
             </footer>
         </div>
-        
+<!-- ============= FOOTER END ============== -->
         
     </body>
 </html>
