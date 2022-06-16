@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,35 +17,25 @@ import javax.servlet.http.HttpServletResponse;
 import modeli.Baza;
 import modeli.Kupnja;
 
-/**
- *
- * @author Magyarboss
- */
-@WebServlet(name = "PovijestKupnjeServlet", urlPatterns = {"/PovijestKupnjeServlet"})
-public class PovijestKupnjeServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+@WebServlet(name = "PovijestKupnjeAdminServlet", urlPatterns = {"/PovijestKupnjeAdminServlet"})
+public class PovijestKupnjeAdminServlet extends HttpServlet {
+
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         request.setCharacterEncoding("UTF-8");
         
+        
         Baza baza = new Baza();
         
         try{
             baza.connect();
-            int idkor = (int)request.getSession().getAttribute("IDKorisnik");
-            String imePrezimeKorisnika = request.getSession().getAttribute("imePrezime").toString();
+            //int idkor = (int)request.getSession().getAttribute("IDKorisnik");
+            //String imePrezimeKorisnika = request.getSession().getAttribute("imePrezime").toString();
             
-            ResultSet rs = baza.selectupit("SELECT * FROM Kupnja WHERE KorisnikID= "+idkor+" ORDER BY Datum DESC");
+            ResultSet rs = baza.selectupit("SELECT * FROM Kupnja ORDER BY Datum DESC");
             
             ArrayList<Kupnja> kupnje = new ArrayList();
             
@@ -55,6 +44,14 @@ public class PovijestKupnjeServlet extends HttpServlet {
                 int idpr = rs.getInt("ProizvodID");
                 ResultSet rsProizvod = baza.selectupit("SELECT * FROM Proizvod WHERE IDProizvod="+idpr);
                 rsProizvod.next();
+                
+                int idkor = rs.getInt("KorisnikID");
+                ResultSet rsKorisnik = baza.selectupit("SELECT * FROM Korisnik WHERE IDKorisnik="+idkor);
+                rsKorisnik.next();
+                String imePrezimeKorisnika = rsKorisnik.getString("Ime") + " " + rsKorisnik.getString("Prezime");
+                String emailKorisnika = rsKorisnik.getString("email");
+                if (emailKorisnika==null) emailKorisnika = "Nije na raspolaganju!" ;
+                
                 String nacin = "Nepoznato";
                 if(rs.getInt("Nacin")==1) nacin = "Online Plaćanje";
                 if(rs.getInt("Nacin")==2) nacin = "Gotovina - pouzeće";
@@ -68,18 +65,22 @@ public class PovijestKupnjeServlet extends HttpServlet {
                                     rs.getString("Datum"),      //rs.getObject(6, LocalDateTime.class),
                                     nacin,
                                     imePrezimeKorisnika,
-                                    rsProizvod.getString("Naziv")));
+                                    rsProizvod.getString("Naziv"),
+                                    emailKorisnika));
             }
             request.setAttribute("kupnje", kupnje);
             
             
-            getServletContext().getRequestDispatcher("/prikazPovijestKupnje.jsp").forward(request, response);
+            
+            getServletContext().getRequestDispatcher("/prikazPovijestKupnjeAdmin.jsp").forward(request, response);
             
             
         }
         catch(IOException | ClassNotFoundException | SQLException | ServletException e) {
             
         }
+        
+        
         
     }
 

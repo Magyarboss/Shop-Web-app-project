@@ -11,6 +11,7 @@
 * NetBeans 13.0 ver.
 * JDK 8.0 u331 ver.
 * Java EE 7 Web ver.
+* Java technologies: Servlet/JSP
 * GlassFish server 4.1.1
 * Microsoft SQL Server Management Studio v18.11.1 (SSMS) 
 * Language: Croatian (for now, but I plan to put the option to switch to ENG)

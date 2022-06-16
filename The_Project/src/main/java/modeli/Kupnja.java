@@ -21,6 +21,20 @@ public class Kupnja {
     String Nacin;
     String NazivKorisnika;
     String NazivProizvoda;
+    String EmailKorisnika;
+
+    public Kupnja(int IDKupnja, int KorisnikID, int ProizvodID, double Cijena, int Kolicina, String Datum, String Nacin, String NazivKorisnika, String NazivProizvoda, String EmailKorisnika) {
+        this.IDKupnja = IDKupnja;
+        this.KorisnikID = KorisnikID;
+        this.ProizvodID = ProizvodID;
+        this.Cijena = Cijena;
+        this.Kolicina = Kolicina;
+        this.Datum = Datum;
+        this.Nacin = Nacin;
+        this.NazivKorisnika = NazivKorisnika;
+        this.NazivProizvoda = NazivProizvoda;
+        this.EmailKorisnika = EmailKorisnika;
+    }
 
     public Kupnja(int IDKupnja, int KorisnikID, int ProizvodID, double Cijena, int Kolicina, String Datum, String Nacin, String NazivKorisnika, String NazivProizvoda) {
         this.IDKupnja = IDKupnja;
@@ -106,11 +120,19 @@ public class Kupnja {
         this.NazivProizvoda = NazivProizvoda;
     }
 
-    @Override
-    public String toString() {
-        return "Kupnja{" + "IDKupnja=" + IDKupnja + ", KorisnikID=" + KorisnikID + ", ProizvodID=" + ProizvodID + ", Cijena=" + Cijena + ", Kolicina=" + Kolicina + ", Datum=" + Datum + ", Nacin=" + Nacin + ", NazivKorisnika=" + NazivKorisnika + ", NazivProizvoda=" + NazivProizvoda + '}';
+    public String getEmailKorisnika() {
+        return EmailKorisnika;
     }
 
-    
+    public void setEmailKorisnika(String EmailKorisnika) {
+        this.EmailKorisnika = EmailKorisnika;
+    }
+
+    @Override
+    public String toString() {
+        return "Kupnja{" + "IDKupnja=" + IDKupnja + ", KorisnikID=" + KorisnikID + ", ProizvodID=" + ProizvodID + ", Cijena=" + Cijena + ", Kolicina=" + Kolicina + ", Datum=" + Datum + ", Nacin=" + Nacin + ", NazivKorisnika=" + NazivKorisnika + ", NazivProizvoda=" + NazivProizvoda + ", EmailKorisnika=" + EmailKorisnika + '}';
+    }
+
+   
     
 }

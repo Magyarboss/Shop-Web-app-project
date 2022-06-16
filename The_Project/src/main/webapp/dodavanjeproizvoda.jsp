@@ -57,7 +57,7 @@
                                     </div>
                                     
                                     <div class="form-group mt-3">
-                                        <input id="potkategorijaID" name="potkategorijaID" type="number" class="form-control" >
+                                        <input id="potkategorijaID" name="potkategorijaID" type="number" class="form-control" >  <!<!-- kada je "required" onda radi ovaj label kako treba inace ne - provjeriti) -->
                                         <label class="form-control-placeholder" for="potkategorijaID">PotkategorijaID</label>
                                     </div>
                                     

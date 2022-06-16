@@ -109,6 +109,7 @@
                         <th>IDKupnja</th>
                         <th>KorisnikID</th>
                         <th>Ime i prezime</th>
+                        <th>E-mail</th>
                         <th>ProizvodID</th>
                         <th>Naziv Proizvoda</th>
                         <th>Cijena [Kn]</th>
@@ -123,6 +124,7 @@
                             <td>${kup.IDKupnja}</td>
                             <td>${kup.korisnikID}</td>
                             <td>${kup.nazivKorisnika}</td>
+                            <td>${kup.emailKorisnika}</td>
                             <td>${kup.proizvodID}</td>
                             <td>${kup.nazivProizvoda}</td>
                             <td><fmt:formatNumber value="${kup.cijena}" minFractionDigits="2" maxFractionDigits="2"/> Kn</td>
@@ -136,33 +138,6 @@
             </div>
         </c:if>
         
-        <c:if test="${loggedUser!=null && loggedUser!='Administrator'}">
-            <div class="container-lg">
-                <table class="table table-bordered table-hover">
-                    <tr>
-                        <th>IDKupnja</th>
-                        <th>Naziv Proizvoda</th>
-                        <th>Nacin</th>
-                        <th>Datum</th>
-                        <th>Vrijeme</th>
-                        <th>Cijena [Kn]</th>
-                        <th>Kolicina</th>
-                    </tr>
-                    <c:forEach var="kup" items="${kupnje}">
-                        <fmt:parseDate value="${kup.datum}" var="parsiranDatum"  pattern="yyyy-MM-dd HH:mm"/>
-                        <tr>
-                            <td>${kup.IDKupnja}</td>
-                            <td>${kup.nazivProizvoda}</td>
-                            <td>${kup.nacin}</td>
-                            <td><fmt:formatDate type="date"  pattern="dd. MMMM yyyy." value="${parsiranDatum}"/></td> 
-                            <td><fmt:formatDate type="time" timeStyle="short" value="${parsiranDatum}"/></td>
-                            <td><fmt:formatNumber value="${kup.cijena}" minFractionDigits="2" maxFractionDigits="2" /> Kn</td>
-                            <td>${kup.kolicina}</td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </div>
-        </c:if>
         
         <!-- ============= FOOTER ============== -->
         <div class="container mt-auto">

@@ -49,12 +49,18 @@
                             </a>
                             <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                                 <li><a class="dropdown-item" href="mojprofil.jsp">Moj profil</a></li>
-                                <li><a class="dropdown-item" href="PovijestKupnjeServlet">Povijest kupnje</a></li>
+                                <li><a class="dropdown-item" href="PovijestKupnjeServlet">Moja povijest kupnja</a></li>
+                                
+                                <c:if test="${loggedUser=='Administrator'}" >
+                                    <li><a class="dropdown-item" href="PovijestKupnjeAdminServlet">Povijest svih kupnja</a></li>
+                                </c:if>
+                                    
                                 <li><a class="dropdown-item" href="#">Promjena lozinke</a></li>
                                 
                                 <c:if test="${loggedUser=='Administrator'}" >
-                                <li><a class="dropdown-item" href="dodavanjeproizvoda.jsp">Dodavanje proizvoda</a></li>
+                                    <li><a class="dropdown-item" href="dodavanjeproizvoda.jsp">Dodavanje proizvoda</a></li>
                                 </c:if>
+                                    
                                 <li><a class="dropdown-item" href="#">Postavke</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="LogoutServlet">Odjavi se</a></li>
